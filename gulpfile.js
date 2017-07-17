@@ -1,6 +1,7 @@
 var gulp = require('gulp'); // importamos gulp
 var sass = require('gulp-sass');//importamos gulp-sass
 var browserSync = require('browser-sync').create();// importamos browser-sync
+var notify = require('gulp-notify');
 
 //definimos la tarea por defecto
 gulp.task('default', function(){
@@ -17,7 +18,10 @@ gulp.task('default', function(){
 // compilar sass
 gulp.task('sass', function(){
     gulp.src('src/scss/style.scss') // cargamos el archivo style.scss
-        .pipe(sass().on('error', sass.logError)) // lo compilamos con gulp-sacc
+        .pipe(sass().on('error', function(error) {
+            return notify().write(error);
+        })) // lo compilamos con gulp-sacc
         .pipe(gulp.dest('src/css/')) // guardamos el resultado en la carpeta css
-        .pipe(browserSync.stream()); // recarga elcss al vuelo
+        .pipe(browserSync.stream()) // recarga el css al vuelo
+        .pipe(notify('SASS compilado')); // muestra notificación en pantalla
 });
