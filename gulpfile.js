@@ -13,7 +13,7 @@ gulp.task('default', ['sass','html'], function(){
     gulp.watch(['src/scss/*.scss', 'src/scss/**/*.scss'], ['sass']);
 
     // observa cambios en los html y recarga el navegador
-    gulp.watch('src/*.html', ['html']);
+    gulp.watch(['src/*.html', 'src/**/*.html'], ['html']);
 });
 
 // compilar sass
@@ -29,7 +29,7 @@ gulp.task('sass', function(){
 // copiar e importar html
 gulp.task('html', function(){
     gulp.src('src/*.html')
-        .pipe(gulpImport('src/components/*'))
+        .pipe(gulpImport('src/components/'))
         .pipe(gulp.dest('dist/'))
         .pipe(browserSync.stream());
 });
