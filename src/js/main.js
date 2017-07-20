@@ -1,3 +1,1 @@
-
-
-console.log('Hello Aboy');
+const $ = require('jquery');
