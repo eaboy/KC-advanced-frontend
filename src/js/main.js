@@ -1,8 +1,8 @@
 window.$ = window.jQuery = require('jquery');
 
-import { SongsService} from './songsService';
+import SongsService from './songsService';
 
-const songsService = new SongsService();
+const songsService = new SongsService('/songs');
  
 // Carga la lista de canciones con AJAX
 
